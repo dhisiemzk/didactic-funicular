@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Пожертвования для pandareborn.ton</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      text-align: center;
+      background: linear-gradient(-45deg, #1a2a6c, #b21f1f, #fdbb2d, #0f2027);
+      background-size: 400% 400%;
+      animation: gradient 12s ease infinite;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.6);
+    }
+    h2 {
+      margin-top: 30px;
+      font-size: 1.5em;
+      text-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+    p {
+      font-size: 1.1em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px rgba(0,0,0,0.6);
+    }
+    .wallet {
+      font-weight: bold;
+      font-size: 1em;
+      background: rgba(0,0,0,0.4);
+      padding: 8px 15px;
+      border-radius: 10px;
+      display: inline-block;
+      margin-bottom: 20px;
+      word-break: break-word;
+    }
+    .buttons {
+      margin: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    a.button, button {
+      flex: 1 1 40%;
+      margin: 8px;
+      padding: 12px 18px;
+      background: rgba(0,170,255,0.85);
+      color: #fff;
+      font-size: 1em;
+      font-weight: bold;
+      text-decoration: none;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    a.button:hover, button:hover {
+      background: rgba(0,136,204,0.9);
+      transform: scale(1.05);
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      text-align: center;
+      width: 100%;
+      max-width: 250px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Пожертвования для cryptashkin.ton</h1>
+  <p>Вы можете поддержать проект, переведя любую сумму или NFT на TON-кошелёк:</p>
+  
+  <div class="wallet">Адрес: pandareborn.ton/div>
+
+  <div class="buttons">
+    <a class="button" href="ton://transfer/pandareborn.ton?amount=1000000000">1 TON</a>
+    <a class="button" href="ton://transfer/pandareborn.ton?amount=5000000000">5 TON</a>
+    <a class="button" href="ton://transfer/pandareborn.ton?amount=10000000000">10 TON</a>
+    <a class="button" href="ton://transfer/pandareborn.ton?asset=nft">Передать NFT</a>
+  </div>
+
+  <p>Или введите сумму вручную:</p>
+  <input type="number" id="amount" placeholder="Введите сумму в TON" min="0.1" step="0.1">
+  <br>
+  <button onclick="sendCustom()">Отправить</button>
+
+  <h2>Пожертвовать картой</h2>
+  <div class="buttons">
+    <a class="button" href="https://yoomoney.ru/to/4100118961911044" target="_blank">💳 Visa / Mastercard</a>
+    <a class="button" href="https://yoomoney.ru/to/4100118961911044" target="_blank">💳 Мир (Россия)</a>
+    <a class="button" href="https://yoomoney.ru/to/4100118961911044" target="_blank">🪙 YooMoney</a>
+  </div>
+
+  <script>
+    function sendCustom() {
+      let ton = document.getElementById('amount').value;
+      if (!ton || ton <= 0) {
+        alert("Введите корректную сумму в TON");
+        return;
+      }
+      let nanoton = Math.round(ton * 1000000000); // 1 TON = 1e9 нанотонов
+      let url = "ton://transfer/pandareborn.ton?amount=" + nanoton;
+      window.location.href = url;
+    }
+  </script>
+</body>
+</html>
